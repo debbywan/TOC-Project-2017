@@ -49,26 +49,27 @@ The initial state is set to `start`.
 
 `start` state is triggered to `user` state by typing `start`
 
-Every time `user` state is triggered to `advance` to another state, it will `go_back` to `user` state after the bot replies corresponding message.
+Every time `user` state is triggered to `advance` to another state,</br>
+it will `go_back` to `user` state after the bot replies corresponding message.
 
-And in some states, you can either choose `end` to go back to `user` or `back` to go back to `上一層`.
+And in some states, you can either choose `end` to go back to `user` or `back` to go back to `上一層`.</br>
 I have mentioned users which states have these transitions in the reply text, so don't worry.
 
 If you want to leave `user` , you should type `seeya`
 
 
 ## Descriptions
-我的bot功用是要尋找成大附近的醫院 ,診所 ,藥局。\n
-First of all, users have three choices 醫院 ,診所 ,藥局
-再來使用者輸入`醫院` ,`診所` ,`藥局`，就可以進到下一個步驟，剩下的選項都是打 \n
-使用者要尋找的選項開頭第一個中文字開頭即可。
+我的bot功用是要尋找成大附近的醫院 ,診所 ,藥局。</br>
+First of all, users have three choices 醫院 ,診所 ,藥局</br>
+再來使用者輸入`醫院` ,`診所` ,`藥局`，就可以進到下一個步驟，剩下的選項都是打</br>
+使用者要尋找的選項開頭第一個中文字開頭即可。</br>
 舉例來說如：
     醫院 ,診所 ,藥局 ->`診所`-> 皮膚科，眼科，內科，骨外科/復健科，牙科 -> `內科`-> 詠心診所->`詠`->(詠心診所的詳細內容 -> (因為沒有多其他內科選項，所以自動回到user state)
 
-註：
-    1.以上例子之粗體字為使用者輸入之中文字串
-    2.這個bot沒有輸入錯誤偵測
-    3.有`end`和`back`功能的state會在reply_text中顯示給使用者看
+## 註：
+    *以上例子之灰框字為使用者輸入之中文字串
+    *這個bot沒有輸入錯誤偵測
+    *有`end`和`back`功能的state會在reply_text中顯示給使用者看
         
 
 
