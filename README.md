@@ -6,7 +6,7 @@ using : python3 , telegram-bot and pygraphviz
 
 ## Setup
 
-### Prerequisite
+### Prerequire
 * Python 3
 
 #### Install Dependency
