@@ -68,9 +68,9 @@ First of all, users have three choices 醫院 ,診所 ,藥局</br>
 
 ## 註
  
-   *  以上例子之灰框字為使用者輸入之中文字串 </br>
-   *  這個bot沒有輸入錯誤偵測 </br>
-   *  有`end`和`back`功能的state會在reply_text中顯示給使用者看 </br>
+ *  以上例子之灰框字為使用者輸入之中文字串 </br>
+ *  這個bot沒有輸入錯誤偵測 </br>
+ *  有`end`和`back`功能的state會在reply_text中顯示給使用者看 </br>
    
 
 
