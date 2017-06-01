@@ -67,10 +67,11 @@ First of all, users have three choices 醫院 ,診所 ,藥局</br>
     醫院 ,診所 ,藥局 ->`診所`-> 皮膚科，眼科，內科，骨外科/復健科，牙科 -> `內科`-> 詠心診所->`詠`->(詠心診所的詳細內容 -> (因為沒有多其他內科選項，所以自動回到user state)
 
 ## 註
-   *以上例子之灰框字為使用者輸入之中文字串 </br>
-   *這個bot沒有輸入錯誤偵測 </br>
-   *有`end`和`back`功能的state會在reply_text中顯示給使用者看 </br>
-        
+   <ol>
+   以上例子之灰框字為使用者輸入之中文字串 </br>
+   這個bot沒有輸入錯誤偵測 </br>
+   有`end`和`back`功能的state會在reply_text中顯示給使用者看 </br>
+   </ol>    
 
 
 ## Author
