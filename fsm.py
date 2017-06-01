@@ -1,5 +1,8 @@
 from transitions.extensions import GraphMachine
-
+from bs4 import BeautifulSoup
+import urllib
+import requests
+import telegram
 
 class TocMachine(GraphMachine):
     def __init__(self, **machine_configs):
@@ -14,19 +17,24 @@ class TocMachine(GraphMachine):
 
     def is_going_to_state1(self, update):
         text = update.message.text
+        
         return text.lower() == '醫院'
+        
 
     def is_going_to_state11(self, update):
         text = update.message.text
         return text.lower() == '成'
+        
 
     def is_going_to_state12(self, update):
         text = update.message.text
         return text.lower() == '台'
+        
 
     def is_going_to_state2(self, update):
         text = update.message.text
         return text.lower() == '診所'
+        
 
     def is_going_to_state21(self, update):
         text = update.message.text
@@ -87,7 +95,12 @@ class TocMachine(GraphMachine):
     def is_going_to_state3(self, update):
         text = update.message.text
         return text.lower() == '藥局'
+    
+    #def is_going_to_state4(self, update):
+        #text = update.message.text
+        #return text.lower() == '推薦'
 
+        
     def back_to_state1(self, update):
         text = update.message.text
         return text.lower() == 'back'
@@ -131,6 +144,9 @@ class TocMachine(GraphMachine):
                                   '電 話：(06)2353535\n'
                                   '網 站：http://www.hosp.ncku.edu.tw/nckm/index.aspx\n'
                                   '網路掛號 : http://service.hosp.ncku.edu.tw/Tandem/DeptUI.aspx?Lang=')
+        update.message.reply_location(23.0022232,120.2177387)
+        update.message.reply_text('end  : 回到開始\n'
+                                  'back : 回上一層')
         #update.message.reply_photo('http://i.imgur.com/ENumiGZ.png')
         self.go_back(update)
 
@@ -143,6 +159,9 @@ class TocMachine(GraphMachine):
                                   '電 話：(06)2200055轉9\n'
                                   '網 站：http://www.tnhosp.mohw.gov.tw/\n'
                                   '網路掛號 : http://tnweb.tnhosp.mohw.gov.tw/OINetReg/OINetReg.Reg/Reg_NetReg.aspx')
+        update.message.reply_location(22.9963466,120.2066182)
+        update.message.reply_text('end  : 回到開始\n'
+                                  'back : 回上一層')
         self.go_back(update)
 
     def on_exit_state12(self, update):
@@ -166,6 +185,7 @@ class TocMachine(GraphMachine):
         update.message.reply_text('地 址：台南市長榮路三段129號\n'
                                   '電 話：(06)2342219')
         update.message.reply_photo('http://i.imgur.com/ENumiGZ.png')
+        
         self.go_back(update)
 
     def on_exit_state211(self, update):
@@ -182,6 +202,9 @@ class TocMachine(GraphMachine):
         update.message.reply_text('地 址 : 台南市長榮路二段75號\n'
                                   '電 話 :(06)2757789\t\t(06)2362490')
         update.message.reply_photo('http://i.imgur.com/W4oJHm1.png?1')
+        
+        update.message.reply_text('end  : 回到開始\n'
+                                  'back : 回上一層')
         #self.go_back(update)
 
     def on_exit_state221(self, update):
@@ -191,6 +214,9 @@ class TocMachine(GraphMachine):
         update.message.reply_text('地 址：台南市東安路146-1號\n'
                                   '電 話：(06)2376767\t\t(06)2749799')
         update.message.reply_photo('http://i.imgur.com/EaW0z0I.png')
+        
+        update.message.reply_text('end  : 回到開始\n'
+                                  'back : 回上一層')
         #self.go_back(update)
 
     def on_exit_state222(self, update):
@@ -200,6 +226,9 @@ class TocMachine(GraphMachine):
         update.message.reply_text('地 址：台南市小東路167號\n'
                                   '電 話: (06)2354988')
         update.message.reply_photo('http://i.imgur.com/0Y1oFxI.png')
+        
+        update.message.reply_text('end  : 回到開始\n'
+                                  'back : 回上一層')
         #self.go_back(update)
 
     def on_exit_state223(self, update):
@@ -216,6 +245,7 @@ class TocMachine(GraphMachine):
         update.message.reply_text('地 址：台南市東光路一段130號\n'
                                   '電 話：(06)2089877')
         update.message.reply_photo('http://i.imgur.com/6WnxLlf.png')
+        
         self.go_back(update)
 
     def on_exit_state231(self, update):
@@ -232,6 +262,8 @@ class TocMachine(GraphMachine):
         update.message.reply_text('地 址：台南市北區林森路三段338號\n'
                                   '電 話：(06)2361566')
         update.message.reply_photo('http://i.imgur.com/WeyPd3Q.png')
+        update.message.reply_text('end  : 回到開始\n'
+                                  'back : 回上一層')
         #self.go_back(update)
 
     def on_exit_state241(self, update):
@@ -241,6 +273,8 @@ class TocMachine(GraphMachine):
         update.message.reply_text('地 址：台南市東門路一段298號1樓\n'
                                   '電 話：(06)2386150')
         update.message.reply_photo('http://i.imgur.com/IuUqtPM.png')
+        update.message.reply_text('end  : 回到開始\n'
+                                  'back : 回上一層')
         #self.go_back(update)
 
     def on_exit_state242(self, update):
@@ -256,6 +290,8 @@ class TocMachine(GraphMachine):
     def on_enter_state251(self, update):
         update.message.reply_text('地 址：台南市北區開元路485巷21-23號1樓\n'
                                   '電 話：(06)2389085')
+        update.message.reply_text('end  : 回到開始\n'
+                                  'back : 回上一層')
         #update.message.reply_photo('http://i.imgur.com/IuUqtPM.png')
         self.go_back(update)
 
@@ -265,6 +301,9 @@ class TocMachine(GraphMachine):
     def on_enter_state252(self, update):
         update.message.reply_text('地 址：台南市東區長榮路一段180號\n'
                                   '電 話：(06)2005129')
+        #update.message.reply_location(22.9927927,120.2216012)
+        update.message.reply_text('end  : 回到開始\n'
+                                  'back : 回上一層')
         self.go_back(update)
 
     def on_exit_state252(self, update):
@@ -285,5 +324,23 @@ class TocMachine(GraphMachine):
 
     def on_exit_state3(self, update):
         print('Leaving state3')
+
+    #def on_enter_state4(self, update):
+        #text = update.message.reply_text
+        #global x
+        #if text == '推薦':
+            #x=star
+            #url = "http://tn.store.tnn.tw/class.html?c=7&cc=276&city=1580" 
+            #url = " https://mirlab.org/jang/books/html/"
+            #response =requests.get(url)
+            #soup = BeautifulSoup(response.text,"lxml")
+            #data = soup.find('td',attrs={'class':'f_13_01'})
+            #wtf = soup.find_all('td')
+            #print(wtf.text)
+            #update.message.reply_text(response.text)
+            #self.go_back(update)
+
+    #def on_exit_state4(self, update):
+        #print('Leaving state4')
 
 
